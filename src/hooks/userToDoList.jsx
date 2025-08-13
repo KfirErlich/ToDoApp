@@ -1,10 +1,7 @@
 import { useState,useRef,useEffect } from 'react';
 
-export const userToDoList = () => {
-    const [todoList, setTodoList] = useState(() => {
-        const savedList = localStorage.getItem('todoList')
-        return savedList ? JSON.parse(savedList) : []
-    })
+export const userToDoList = (initList= []) => {
+    const [todoList, setTodoList] = useState(initList)
     const [addMessage, setAddMessage] = useState('')
 
     const messageTimerRef = useRef(null)
@@ -28,6 +25,15 @@ export const userToDoList = () => {
             }
         }
     }, [])
+
+    // Persist list changes safely
+    useEffect(() => {
+        try {
+            localStorage.setItem('todoList', JSON.stringify(todoList))
+        } catch (err) {
+            console.warn('Failed to persist todoList to localStorage', err)
+        }
+    }, [todoList])
 
     const addItem = (itemText) =>{
         const trimmed = itemText.trim()
