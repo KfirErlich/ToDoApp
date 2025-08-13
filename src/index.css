@@ -1,0 +1,15 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+.btn-icon {
+  @apply text-gray-400 hover:text-red-500;
+}
+
+.btn-icon-size{
+  @apply h-5 w-5
+}
+
+.list-style{
+ @apply w-full max-w-4xl mb-8
+}
