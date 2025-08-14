@@ -3,6 +3,12 @@ import { useState } from 'react'
 import { TrashIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 import EditItem from './itemHandler/EditItem';
 
+const priorityColorMapping = {
+    'High' : 'bg-red-500 hover:bg-gray-50 px-6 py-4',
+    'Medium' : 'bg-yellow-500 hover:bg-gray-50 px-6 py-4',
+    'Low': 'bg-green-500 hover:bg-gray-50 px-6 py-4'
+}
+
 
 function ToDoList({list, onDelete, onUpdate}) {
     const [editingIndex, setEditingIndex] = useState(null)
@@ -18,7 +24,7 @@ function ToDoList({list, onDelete, onUpdate}) {
         <div className="bg-white rounded-lg shadow-lg">
             <ul className="divide-y divide-gray-200 rounded-lg">
                 {list.map((todo, index) => (
-                    <li key={index} className="bg-white hover:bg-gray-50 px-6 py-4">
+                    <li key={index} className="bg-red-500 hover:bg-red-400 px-6 py-4">
                         <div className="flex justify-between space-x-4">
                             <div className="flex items-center space-x-4">
                                 {editingIndex === index ? (

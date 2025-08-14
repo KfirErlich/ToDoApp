@@ -15,5 +15,6 @@ const taskReducerActions = {
 export const formReducer = (state, action) => {
     const taskActionHandler = taskReducerActions[action.type]
 
+
     return taskActionHandler ? taskActionHandler(state,action) : state
 }

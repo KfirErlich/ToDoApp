@@ -1,8 +1,5 @@
-import {initialState, formReducer} from '../hooks/form-hook'
-import React, { useReducer } from 'react';
 
-const ItemForm = ({addItem, handleAddItemModal}) => {
-    const [state, dispatch] = useReducer(formReducer, initialState)
+const ItemForm = ({addItem, handleAddItemModal, state, dispatch}) => {
 
     const handleSubmitNew = (e) => {
 		e.preventDefault()
@@ -11,7 +8,7 @@ const ItemForm = ({addItem, handleAddItemModal}) => {
 		if (!name) return
 
 		addItem(name)
-		dispatch({type: 'RESET_FORM'})
+		//dispatch({type: 'RESET_FORM'})
 		handleAddItemModal()
 	}
 
@@ -41,7 +38,7 @@ const ItemForm = ({addItem, handleAddItemModal}) => {
 						</div>
 					</div>
 					<div className="flex justify-end gap-2 pt-2">
-						<button type="button" className="btn" onClick={() => setIsAddOpen(false)}>Cancel</button>
+						<button type="button" className="btn" onClick={() => handleAddItemModal()}>Cancel</button>
 						<button type="submit" className="btn btn-primary" disabled={!state.taskName.trim()}>Add</button>
 					</div>
 				</form>

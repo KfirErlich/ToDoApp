@@ -3,10 +3,13 @@ import ToDoList from './ToDoList'
 import { userToDoList } from '../hooks/userToDoList'
 import Modal from '../UI/Modal'
 import ItemForm from './ItemForm'
+import {initialState, formReducer} from '../hooks/form-hook'
 
 function ToDo() {
 	const { todoList, addMessage, addItem, deleteItem, updateItem} = userToDoList([])
 	const [isAddItemOpen, setIsAddItemOpen] = useState(false)
+	const [state, dispatch] = useReducer(formReducer, initialState)
+	console.log(state)
 
 	const handleAddItemModal = () => {
 		setIsAddItemOpen(() => !isAddItemOpen)
@@ -34,7 +37,7 @@ function ToDo() {
 			</div>
 
 			<Modal isOpen={isAddItemOpen} onClose={() => setIsAddItemOpen(false)}>
-				<ItemForm addItem={addItem} handleAddItemModal={handleAddItemModal}/>
+				<ItemForm addItem={addItem} handleAddItemModal={handleAddItemModal} state={state} dispatch={dispatch}/>
 			</Modal>
 
 			{addMessage && (<div className="toast toast-top">
