@@ -1,10 +1,7 @@
 import { useState,useRef,useEffect } from 'react';
 
 export const userToDoList = () => {
-    const [todoList, setTodoList] = useState(() => {
-        const savedList = localStorage.getItem('todoList')
-        return savedList ? JSON.parse(savedList) : []
-    })
+    const [todoList, setTodoList] = useState([])
     const [addMessage, setAddMessage] = useState('')
 
     const messageTimerRef = useRef(null)
